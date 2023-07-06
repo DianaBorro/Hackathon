@@ -1,4 +1,10 @@
-const Document = () => {
+import { DocumentType } from './Context';
+
+type Props = {
+  documents: any;
+};
+
+const Document = ({ documents }: Props) => {
   const handleDelete = () => {};
 
   return (
@@ -7,7 +13,7 @@ const Document = () => {
         <p>Edit this content to add your own quote</p>
       </blockquote> */}
       <div className="document">
-        <textarea></textarea>
+        <textarea>{documents}</textarea>
         <button onClick={handleDelete}>delete</button>
       </div>
     </>

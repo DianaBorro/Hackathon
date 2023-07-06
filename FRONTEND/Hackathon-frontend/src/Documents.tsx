@@ -54,6 +54,8 @@ const Documents = () => {
     handleCreateDocument();
   }, []);
 
+  documents.map((e) => console.log('this are all the doecs', e));
+
   return (
     <>
       {() => {
@@ -71,8 +73,8 @@ const Documents = () => {
       >
         hi
       </button>
-      {documents.map((_document, index) => (
-        <Document key={index} />
+      {documents.map((document, index) => (
+        <Document key={index} documents={document.content} />
       ))}
     </>
   );
