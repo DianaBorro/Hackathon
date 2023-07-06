@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo:4
+    container_name: 'hackathon'
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017:27017
+    command: --logpath=/dev/null
