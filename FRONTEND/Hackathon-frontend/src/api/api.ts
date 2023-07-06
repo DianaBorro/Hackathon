@@ -8,7 +8,7 @@ export const fetchAllDocuments = async (): Promise<DocumentType[]> => {
   return result.data;
 };
 
-//
+export let existingDocuments: DocumentType;
 export const handleCreateDocument = async () => {
   const newDocument = {
     title: 'My New Document',
@@ -21,6 +21,7 @@ export const handleCreateDocument = async () => {
     const savedDocument = response.data;
     console.log('Saved Document:', savedDocument);
     // Do something with the saved document
+    existingDocuments = savedDocument;
   } catch (error) {
     console.error('Error creating document:', error);
     // Handle error

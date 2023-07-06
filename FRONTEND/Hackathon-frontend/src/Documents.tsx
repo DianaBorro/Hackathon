@@ -3,7 +3,11 @@ import { hi } from './Sidebar';
 import { DocumentType } from './Context';
 import { useEffect, useState } from 'react';
 
-import { fetchAllDocuments, handleCreateDocument } from './api/api';
+import {
+  existingDocuments,
+  fetchAllDocuments,
+  handleCreateDocument,
+} from './api/api';
 
 const thingie: DocumentType = {
   title: 'Frontend first trial document',
@@ -19,9 +23,11 @@ const Documents = () => {
   const [documents, setNewDocument] = useState<DocumentType[]>([]);
 
   const gettingAllDocuments = async () => {
-    await fetchAllDocuments();
-    console.log('this is fetchAllDocuments', await fetchAllDocuments());
-    return 'hi';
+    // const existingDocuments = await handleCreateDocument();
+    // setNewDocument((prev) => [...prev, existingDocuments]);
+    // await fetchAllDocuments();
+    // console.log('this is fetchAllDocuments', await fetchAllDocuments());
+    // return 'hi';
   };
 
   const addingDocuments = (newDocument: DocumentType) => {
@@ -57,6 +63,7 @@ const Documents = () => {
         onClick={() => {
           happyLog();
           addingDocuments(thingie);
+          console.log('here are the existing documents', existingDocuments);
         }}
       >
         hi
