@@ -20,7 +20,11 @@ app.get('/', async (req, res) => {
 
 app.get('/api/documents', async (req, res) => {
   const { title } = req.query;
-  const foundDocument = (await documentModel.find({ title })) as Document[];
+  const params: any = {};
+  if (title) {
+    params.title = title;
+  }
+  const foundDocument = (await documentModel.find(params)) as Document[];
   res.status(200).json(foundDocument);
   console.log('is this working? Is this?');
 });

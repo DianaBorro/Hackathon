@@ -20,7 +20,7 @@ const happyLog = () => {
 };
 
 const Documents = () => {
-  const [documents, setNewDocument] = useState<DocumentType[]>([]);
+  const [documents, setDocuments] = useState<DocumentType[]>([]);
 
   const gettingAllDocuments = async () => {
     // const existingDocuments = await handleCreateDocument();
@@ -32,7 +32,7 @@ const Documents = () => {
 
   const addingDocuments = (newDocument: DocumentType) => {
     const updatedDocuments = [...documents, newDocument];
-    setNewDocument(updatedDocuments);
+    setDocuments(updatedDocuments);
     console.log('new document typ added', documents);
     return 'hi';
   };
@@ -44,6 +44,7 @@ const Documents = () => {
     fetchAllDocuments()
       .then((documents) => {
         console.log('🍋🍋🍋', documents);
+        setDocuments(documents);
         // Do something with the fetched documents
       })
       .catch((error) => {
@@ -51,7 +52,7 @@ const Documents = () => {
       });
 
     handleCreateDocument();
-  }, [documents]);
+  }, []);
 
   return (
     <>
@@ -64,6 +65,8 @@ const Documents = () => {
           happyLog();
           addingDocuments(thingie);
           console.log('here are the existing documents', existingDocuments);
+          const objectSize = Object.values(existingDocuments);
+          console.log('object size', objectSize);
         }}
       >
         hi
