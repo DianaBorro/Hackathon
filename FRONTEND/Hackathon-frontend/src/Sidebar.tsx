@@ -7,22 +7,26 @@ const thingie: DocumentType = {
   tag: 'salt',
 };
 
+export let hi: DocumentType[] = [];
+
 const Sidebar = () => {
-  const [documents, setNewDocument] = useState<DocumentType[]>([]);
+  // const [documents, setNewDocument] = useState<DocumentType[]>([]);
 
-  const addingDocuments = (newDocument: DocumentType) => {
-    setNewDocument([...documents, newDocument]);
-    console.log('new document typ added', documents);
-    return 'hi';
-  };
+  // const addingDocuments = (newDocument: DocumentType) => {
+  //   const updatedDocuments = [...documents, newDocument];
+  //   setNewDocument(updatedDocuments);
+  //   hi = updatedDocuments;
+  //   console.log('new document typ added', documents);
+  //   return 'hi';
+  // };
 
-  useEffect(() => {
-    console.log('documents:', documents);
-  }, [documents]);
+  // useEffect(() => {
+  //   console.log('documents:', documents);
+  // }, [documents]);
 
   return (
     <>
-      <button onClick={() => addingDocuments(thingie)}>Add new document</button>
+      {/* <button onClick={() => addingDocuments(thingie)}>Add new document</button> */}
     </>
   );
 };
