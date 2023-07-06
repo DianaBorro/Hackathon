@@ -8,7 +8,7 @@ const Document = () => {
       </blockquote> */}
       <div className="document">
         <textarea></textarea>
-        <button>delete</button>
+        <button onClick={handleDelete}>delete</button>
       </div>
     </>
   );

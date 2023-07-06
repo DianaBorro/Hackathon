@@ -1,8 +1,10 @@
 import express, { json } from 'express';
 import { Document, documentModel } from './db';
+const cors = require('cors');
 
 export const app = express();
 app.use(express.json());
+app.use(cors());
 
 const objectToSend = {
   title: 'First trial document',
@@ -24,15 +26,17 @@ app.get('/api/documents', async (req, res) => {
 });
 
 app.post('/api/documents', async (req, res) => {
-  const newDocument = {
-    title: req.body.title,
-    content: req.body.content || null,
-    tag: req.body.tag,
-  };
+  // const newDocument = {
+  //   title: req.body.title,
+  //   content: req.body.content || null,
+  //   tag: req.body.tag,
+  // };
   try {
-    const document = new documentModel(newDocument);
-    const savedDocument = await document.save();
-    res.status(200).json(savedDocument);
+    // const document = new documentModel(newDocument);
+    // const savedDocument = await document.save();
+    // res.status(200).json(savedDocument);
+    const documents = await documentModel.find();
+    res.status(200).json(documents);
   } catch (error) {
     console.error('Error saving document:', error);
     res.status(500).json({ error: 'Failed to save document' });
