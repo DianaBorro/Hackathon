@@ -39,7 +39,6 @@ type Props = {
 };
 
 const Document = ({ document }: Props) => {
-  let toDelete: any;
   // documents.map((e: any) =>
   //   console.log('from d these are all the docs', e._id)
   // );
@@ -55,9 +54,17 @@ const Document = ({ document }: Props) => {
 
   //   handleUpdateDocument(document._id, updatedDocument);
   // };
+  let height: any;
+
   const handleUpdate = () => {
     console.log('updatedDocument: ', updatedDocument);
     console.log('document id', document._id);
+    console.log('height b4send', updatedDocument.height);
+    const updatedContent = {
+      title: updatedDocument.title,
+      content: updatedDocument.content,
+      size: height, // Add the size property here
+    };
 
     handleUpdateDocument(document._id, updatedDocument)
       .then((updatedDoc) => {
@@ -85,14 +92,32 @@ const Document = ({ document }: Props) => {
   return (
     <>
       <div className="document">
+        <input
+          className="title"
+          type="text"
+          value={updatedDocument.title}
+          onChange={(e) => {
+            setUpdatedDocument({
+              ...updatedDocument,
+              title: e.target.value,
+            });
+          }}
+        />
         <textarea
+          className="content"
           defaultValue={document.content}
-          onChange={(e) =>
-            setUpdatedDocument({ ...updatedDocument, content: e.target.value })
-          }
+          onChange={(e) => {
+            setUpdatedDocument({
+              ...updatedDocument,
+              content: e.target.value,
+              height: e.target.scrollHeight,
+            });
+            // height = e.target.scrollHeight;
+            console.log('heightt', height);
+          }}
         ></textarea>
         <button onClick={handleDelete}>delete</button>
-        <button onClick={handleUpdate}>edit</button>
+        <button onClick={handleUpdate}>save changes</button>
       </div>
     </>
   );

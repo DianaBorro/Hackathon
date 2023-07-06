@@ -3,4 +3,5 @@ export type DocumentType = {
   content: string;
   tag: string;
   id?: string;
+  height?: number;
 };

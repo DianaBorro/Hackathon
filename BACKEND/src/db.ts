@@ -4,6 +4,7 @@ export type Document = {
   title: string;
   content: string;
   tag?: string;
+  height?: number;
 };
 
 const documentSchema = new mongoose.Schema<Document>({

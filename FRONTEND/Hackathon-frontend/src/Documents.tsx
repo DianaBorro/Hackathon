@@ -120,6 +120,7 @@ const Documents = () => {
       title: 'Untitled',
       content: newDocumentContent,
       tag: 'sample',
+      height: 50,
     };
 
     handleCreateDocument(newDocument)
