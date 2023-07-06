@@ -29,15 +29,22 @@ app.post('/api/documents', async (req, res) => {
     content: req.body.content || null,
     tag: req.body.tag,
   };
-
   try {
     const document = new documentModel(newDocument);
     const savedDocument = await document.save();
-    res.status(200).json(objectToSend);
+    res.status(200).json(savedDocument);
   } catch (error) {
     console.error('Error saving document:', error);
     res.status(500).json({ error: 'Failed to save document' });
   }
+  // try {
+  //   const document = new documentModel(newDocument);
+  //   const savedDocument = await document.save();
+  //   res.status(200).json(objectToSend);
+  // } catch (error) {
+  //   console.error('Error saving document:', error);
+  //   res.status(500).json({ error: 'Failed to save document' });
+  // }
   // const document = await new documentModel(newDocument).save();
   // res.json(objectToSend);
   // res.json({ id: commentResponse._id.toString(), ...newDocument });
