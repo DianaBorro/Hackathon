@@ -9,32 +9,50 @@ export const fetchAllDocuments = async (): Promise<DocumentType[]> => {
 };
 
 export let existingDocuments: DocumentType;
+
 export const handleCreateDocument = async (
   newDocument: DocumentType
 ): Promise<DocumentType> => {
-  const tryDocument = {
-    title: 'My New Document',
-    content: 'Lorem ipsum dolor sit amet',
-    tag: 'sample',
-  };
-
-  // try {
-  const response = await axios.post(BASE_URL, newDocument);
-  const savedDocument = response.data;
-  console.log('Saved Document:', savedDocument);
-  // Do something with the saved document
-  existingDocuments = savedDocument;
-  return savedDocument;
-  // } catch (error) {
-  //   console.error('Error creating document:', error);
-  //   return
-  //   // Handle error
-  // }
+  try {
+    const response = await axios.post(BASE_URL, newDocument);
+    const savedDocument = response.data;
+    console.log('Saved Document:', savedDocument);
+    // Do something with the saved document
+    existingDocuments = savedDocument;
+    return savedDocument;
+  } catch (error) {
+    console.error('Error creating document:', error);
+    throw new Error('Failed to create document');
+  }
 };
+
+// export const handleCreateDocument = async (
+//   newDocument: DocumentType
+// ): Promise<DocumentType> => {
+//   const tryDocument = {
+//     title: 'My New Document',
+//     content: 'Lorem ipsum dolor sit amet',
+//     tag: 'sample',
+//   };
+
+//   // try {
+//   const response = await axios.post(BASE_URL, newDocument);
+//   const savedDocument = response.data;
+//   console.log('Saved Document:', savedDocument);
+//   // Do something with the saved document
+//   existingDocuments = savedDocument;
+//   return savedDocument;
+//   // } catch (error) {
+//   //   console.error('Error creating document:', error);
+//   //   return
+//   //   // Handle error
+//   // }
+// };
 //
 
 export const deleteDocument = async (documentId: string): Promise<void> => {
   const url = `${BASE_URL}/${documentId}`;
+  console.log('this is the documentId', documentId);
 
   try {
     await axios.delete(url);

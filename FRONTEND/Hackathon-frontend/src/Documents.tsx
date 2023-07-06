@@ -98,6 +98,7 @@ const thingie: DocumentType = {
   tag: 'salt',
 };
 
+
 const happyLog = () => {
   console.log(hi);
 };
@@ -114,7 +115,7 @@ const Documents = () => {
     // return 'hi';
   };
 
-  const addingDocuments = () => {
+  const addingDocuments = async () => {
     const newDocument = {
       title: 'Untitled',
       content: newDocumentContent,
@@ -125,12 +126,14 @@ const Documents = () => {
       .then((savedDocument) => {
         const updatedDocuments = [...documents, savedDocument];
         setDocuments(updatedDocuments);
-        console.log('New document added', savedDocument);
+        // console.log('New document added', savedDocument);
         setNewDocumentContent('');
       })
       .catch((error) => {
         console.error('Error creating document:', error);
       });
+    // const documentWithId = await handleCreateDocument(newDocument);
+    // return documentWithId;
   };
 
   useEffect(() => {
@@ -140,7 +143,7 @@ const Documents = () => {
 
     fetchAllDocuments()
       .then((documents) => {
-        console.log('🍋🍋🍋', documents);
+        // console.log('🍋🍋🍋', documents);
         setDocuments(documents);
         // Do something with the fetched documents
       })
@@ -151,8 +154,11 @@ const Documents = () => {
     // handleCreateDocument();
   }, []);
 
-  documents.map((e) => console.log('these are all the docs', e));
-  console.log('LENGTH', documents.length);
+  // documents.map((e) => console.log('these are all the docs', e));
+  // documents.map((e) => e.id);
+  // console.log('LENGTH', documents.length);
+
+  documents.map((e: any) => console.log(e));
 
   return (
     <>
@@ -168,11 +174,18 @@ const Documents = () => {
           onChange={(e) => setNewDocumentContent(e.target.value)}
         ></textarea>
         <button onClick={addingDocuments}>Save Note</button>
-        {documents.map((document, index) => (
+        {/* {documents.map((document, index) => (
           <Document
             key={index}
             documents={documents}
             documentContent={document}
+            documentId={document.id} //
+          />
+        ))} */}
+        {documents.map((e, index) => (
+          <Document
+            key={index}
+            document={e} //
           />
         ))}
       </div>
