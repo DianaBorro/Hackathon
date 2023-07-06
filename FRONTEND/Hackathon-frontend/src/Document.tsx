@@ -1,9 +1,15 @@
 const Document = () => {
+  const handleDelete = () => {};
+
   return (
     <>
-      <blockquote contentEditable="true">
+      {/* <blockquote contentEditable="true">
         <p>Edit this content to add your own quote</p>
-      </blockquote>
+      </blockquote> */}
+      <div className="document">
+        <textarea></textarea>
+        <button>delete</button>
+      </div>
     </>
   );
 };

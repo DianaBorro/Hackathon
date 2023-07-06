@@ -37,7 +37,7 @@ const Documents = () => {
       >
         hi
       </button>
-      {documents.map((document, index) => (
+      {documents.map((_document, index) => (
         <Document key={index} />
       ))}
     </>
