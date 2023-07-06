@@ -21,6 +21,12 @@ const uri =
 // 'mongodb://localhost:27017/cluster0.hackathon';
 // mongoose.connect(uri).then(() => console.log('db connectd'));
 
+const thingie = {
+  title: 'Backend first trial document',
+  content: 'Hello there',
+  tag: 'salt',
+};
+
 mongoose
   .connect(uri)
   .then(async () => {
@@ -35,7 +41,7 @@ mongoose
 
     const foundDocument = (await documentModel.find({
       title: 'This is in document',
-    })) as Document[]; // check this
+    })) as Document[];
 
     console.log('this is found document', foundDocument);
   })
@@ -44,7 +50,18 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 
+
 export const documentModel = mongoose.model<Document>(
   'document',
   documentSchema
 );
+
+documentModel
+  .create(thingie)
+
+  .then((createdDocument) => {
+    console.log('New document created:', createdDocument);
+  })
+  .catch((error) => {
+    console.error('Error creating document:', error);
+  });
