@@ -158,7 +158,7 @@ const Documents = () => {
   // documents.map((e) => e.id);
   // console.log('LENGTH', documents.length);
 
-  documents.map((e: any) => console.log(e));
+  // documents.map((e: any) => console.log(e));
 
   return (
     <>

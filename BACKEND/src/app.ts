@@ -125,6 +125,53 @@ app.post('/api/documents', async (req, res) => {
 // res.json(objectToSend);
 // res.json({ id: commentResponse._id.toString(), ...newDocument });
 
+app.put('/api/documents/:id', async (req, res) => {
+  const documentId = req.params.id;
+  const { title, content, tag } = req.body;
+
+  try {
+    const updatedDocument = await documentModel.findByIdAndUpdate(
+      documentId,
+      { title, content, tag },
+      { new: true }
+    );
+
+    if (updatedDocument) {
+      console.log('BACKEND Document updated:', updatedDocument);
+      res.status(200).json(updatedDocument);
+    } else {
+      console.log('BACKEND Document not found');
+      res.status(404).json({ error: 'Document not found' });
+    }
+    // if (updatedDocument) {
+    //   res.status(200).json(updatedDocument);
+    // } else {
+    //   res.status(404).json({ error: 'Document not found' });
+    // }
+  } catch (error) {
+    console.error('Error updating document:', error);
+    res.status(500).json({ error: 'Failed to update document' });
+  }
+});
+
+app.get('/api/documents/:id', async (req, res) => {
+  const documentId = req.params.id;
+
+  try {
+    const document = await documentModel.findById(documentId);
+    if (document) {
+      res.status(200).json(document);
+    } else {
+      res.status(404).json({ error: 'Document not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching document:', error);
+    res.status(500).json({ error: 'Failed to fetch document' });
+  }
+});
+
+
+
 app.delete('/api/documents/:id', async (req, res) => {
   const documentId = req.params.id;
 

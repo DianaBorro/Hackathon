@@ -50,6 +50,65 @@ export const handleCreateDocument = async (
 // };
 //
 
+export const handleUpdateDocument = async (documentId: any, updatedDocument:any):Promise<void> => {
+  try {
+    const response = await axios.put(`${BASE_URL}/${documentId}`, updatedDocument);
+    const updatedDoc = response.data;
+    console.log('Document updated:', updatedDoc);
+    return updatedDoc; // Return the updated document
+  } catch (error) {
+    console.error('Error updating document:', error);
+    throw new Error('Failed to update document');
+  }
+};
+
+
+// export const handleUpdateDocument = async (documentId: any, updatedDocument: any) => {
+//   try {
+//     const response = await axios.put(`/api/documents/${documentId}`, updatedDocument);
+//     const updatedDoc = response.data;
+//     console.log('Document updated:', updatedDoc);
+//     // Handle success or perform any other necessary actions
+//   } catch (error) {
+//     console.error('Error updating document:', error);
+//     // Handle error
+//   }
+// };
+
+
+// export const handleUpdateDocument = async (
+//   documentId: string,
+//   updatedDocument: any
+// ) => {
+//   axios
+//     .put(`/api/documents/${documentId}`, updatedDocument)
+//     .then((response) => {
+//       const updatedDoc = response.data;
+//       console.log('Document updated:', updatedDoc);
+//       // Handle success or perform any other necessary actions
+//     })
+//     .catch((error) => {
+//       console.error('Error updating document:', error);
+//       // Handle error
+//     });
+
+
+
+  // try {
+  //   const response = await axios.put(
+  //     `/api/documents/${documentId}`,
+  //     updatedDocument
+  //   );
+  //   const updatedDoc = response.data;
+  //   console.log('Document updated:', updatedDoc);
+  //   // Handle success or perform any other necessary actions
+  // } catch (error) {
+  //   console.error('Error updating document:', error);
+  //   // Handle error
+  // }
+// };
+
+
 export const deleteDocument = async (documentId: string): Promise<void> => {
   const url = `${BASE_URL}/${documentId}`;
   console.log('this is the documentId', documentId);

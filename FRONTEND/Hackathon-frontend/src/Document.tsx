@@ -28,7 +28,7 @@
 
 import { useState } from 'react';
 import { DocumentType } from './Context';
-import { deleteDocument } from './api/api';
+import { deleteDocument, handleUpdateDocument } from './api/api';
 
 type Props = {
   document: any;
@@ -47,6 +47,29 @@ const Document = ({ document }: Props) => {
 
   // console.log('documentId', documentId);
 
+  const [updatedDocument, setUpdatedDocument] = useState({ ...document });
+
+  // const handleUpdate = () => {
+  //   console.log('updatedDocument: ', updatedDocument);
+  //   console.log('document id', document._id);
+
+  //   handleUpdateDocument(document._id, updatedDocument);
+  // };
+  const handleUpdate = () => {
+    console.log('updatedDocument: ', updatedDocument);
+    console.log('document id', document._id);
+
+    handleUpdateDocument(document._id, updatedDocument)
+      .then((updatedDoc) => {
+        console.log('Document updated:', updatedDoc);
+        // Optionally, you can perform any additional actions after successful update
+      })
+      .catch((error) => {
+        console.error('Error updating document:', error);
+        // Handle error
+      });
+  };
+
   const handleDelete = () => {
     deleteDocument(document._id)
       .then(() => {
@@ -62,8 +85,14 @@ const Document = ({ document }: Props) => {
   return (
     <>
       <div className="document">
-        <textarea defaultValue={document.content}></textarea>
+        <textarea
+          defaultValue={document.content}
+          onChange={(e) =>
+            setUpdatedDocument({ ...updatedDocument, content: e.target.value })
+          }
+        ></textarea>
         <button onClick={handleDelete}>delete</button>
+        <button onClick={handleUpdate}>edit</button>
       </div>
     </>
   );
