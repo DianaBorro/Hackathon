@@ -11,7 +11,7 @@ const objectToSend = {
 };
 
 app.get('/', async (req, res) => {
-  const hi = 'trust the process';
+  const hi = 'trust ttthe process';
   res.status(200).json(hi);
   console.log('is this working? Is this?');
 });
