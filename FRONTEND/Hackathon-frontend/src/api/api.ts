@@ -9,25 +9,43 @@ export const fetchAllDocuments = async (): Promise<DocumentType[]> => {
 };
 
 export let existingDocuments: DocumentType;
-export const handleCreateDocument = async () => {
-  const newDocument = {
+export const handleCreateDocument = async (
+  newDocument: DocumentType
+): Promise<DocumentType> => {
+  const tryDocument = {
     title: 'My New Document',
     content: 'Lorem ipsum dolor sit amet',
     tag: 'sample',
   };
 
+  // try {
+  const response = await axios.post(BASE_URL, newDocument);
+  const savedDocument = response.data;
+  console.log('Saved Document:', savedDocument);
+  // Do something with the saved document
+  existingDocuments = savedDocument;
+  return savedDocument;
+  // } catch (error) {
+  //   console.error('Error creating document:', error);
+  //   return
+  //   // Handle error
+  // }
+};
+//
+
+export const deleteDocument = async (documentId: string): Promise<void> => {
+  const url = `${BASE_URL}/${documentId}`;
+
   try {
-    const response = await axios.post(BASE_URL, newDocument);
-    const savedDocument = response.data;
-    console.log('Saved Document:', savedDocument);
-    // Do something with the saved document
-    existingDocuments = savedDocument;
+    await axios.delete(url);
+    console.log('Document deleted successfully');
+    // Optionally, you can perform any additional actions after successful deletion
   } catch (error) {
-    console.error('Error creating document:', error);
+    console.error('Error deleting document:', error);
     // Handle error
   }
 };
-//
+
 
 // export const fetchAllDocuments = async (): Promise<DocumentType[]> => {
 //   const result = (await axios({

@@ -7,12 +7,10 @@ export type Document = {
 };
 
 const documentSchema = new mongoose.Schema<Document>({
-  title: { type: String, required: true },
+  title: { type: String },
   content: { type: String, required: true },
   tag: { type: String },
 });
-
-
 
 const uri =
   // 'mongodb+srv://dianaborrodev:JrBY27LrWn1Pgvhh@cluster0.dj1vhti.mongodb.net/hackathon?retryWrites=true&w=majority';
@@ -22,8 +20,8 @@ const uri =
 // mongoose.connect(uri).then(() => console.log('db connectd'));
 
 const thingie = {
-  title: 'Backend first trial document',
-  content: 'Hello there',
+  title: '19',
+  content: 'What is happening',
   tag: 'salt',
 };
 
