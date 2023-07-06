@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './styles/App.css';
 import Documents from './Documents';
+import Sidebar from './Sidebar';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Documents />
+      <Sidebar />
     </>
   );
 }

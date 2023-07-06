@@ -1,9 +1,3 @@
-type DocumentType = {
-  title: string;
-  content: string;
-  tag: string;
-};
-
 const Document = () => {
   return (
     <>
