@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
 
 app.get('/api/documents', async (req, res) => {
   console.log('I AM ALIVE');
-  const documents = await documentModel.find(); //gets ALL the documents
+  const documents = await documentModel.find().sort({ _id: -1 }); //gets ALL the documents
   res.status(200).json(documents);
 
   console.log('is this working? Is this?');

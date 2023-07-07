@@ -5,12 +5,17 @@
   text-align: center;
 }
 
+.creation-of-document {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
 .all-documents {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Display 3 items per row */
   gap: 1rem;
 }
+  
 .document {
   background-color: rgb(246, 243, 209);
   margin: 1rem;
@@ -32,6 +37,21 @@ input {
   border-width: 0;
 }
 
+/* .all-documents>.document {
+  grid-row: span 1;
+}
+
+.all-documents>.document:nth-of-type(1) {
+  grid-row: span 3;
+}
+
+.all-documents>.document:nth-of-type(2) {
+  grid-row: span 2;
+}
+
+.all-documents>.document:nth-of-type(3) {
+  grid-row: span 1;
+} */
 /* .logo {
   height: 6em;
   padding: 1.5em;
