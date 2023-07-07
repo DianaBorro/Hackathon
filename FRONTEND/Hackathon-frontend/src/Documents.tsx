@@ -214,12 +214,14 @@ const Documents = () => {
             documentId={document.id} //
           />
         ))} */}
-        {documents.map((e, index) => (
-          <Document
-            key={index}
-            document={e} //
-          />
-        ))}
+        <div className="all-documents">
+          {documents.map((e, index) => (
+            <Document
+              key={index}
+              document={e} //
+            />
+          ))}
+        </div>
       </div>
     </>
   );
