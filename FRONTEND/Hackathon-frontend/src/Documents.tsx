@@ -186,8 +186,8 @@ const Documents = () => {
         <textarea
           name=""
           id=""
-          cols={30}
-          rows={10}
+          cols={20}
+          rows={7}
           value={newDocumentContent}
           onChange={(e) => {
             setNewDocumentContent(e.target.value);

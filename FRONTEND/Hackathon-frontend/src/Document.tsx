@@ -26,7 +26,7 @@
 
 // export default Document;
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DocumentType } from './Context';
 import { deleteDocument, handleUpdateDocument } from './api/api';
 
@@ -92,12 +92,15 @@ const Document = ({ document }: Props) => {
       });
   };
 
+  useEffect(() => {});
+
   return (
     <>
       <div className="document">
         <input
           className="title"
           type="text"
+          placeholder="Untitled"
           value={updatedDocument.title}
           onChange={(e) => {
             setUpdatedDocument({
@@ -109,8 +112,8 @@ const Document = ({ document }: Props) => {
         <textarea
           className="content"
           defaultValue={document.content} //have just value instead?
-          cols={document.cols}
-          rows={document.rows}
+          cols={10}
+          rows={5}
           onChange={(e) => {
             setUpdatedDocument({
               ...updatedDocument,
@@ -124,6 +127,7 @@ const Document = ({ document }: Props) => {
         <input
           className="tag"
           type="text"
+          placeholder="no tag"
           value={updatedDocument.tag}
           onChange={(e) => {
             setUpdatedDocument({

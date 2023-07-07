@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  --color: #e4e2c7;
+  --color: #74E7DB;
     --backgroundColor: #e4e2c7;
 }
 
@@ -29,6 +29,7 @@
 
 .document-buttons {
   flex-direction: row;
+  justify-content: space-between;
 }
 
 textarea {
@@ -48,6 +49,7 @@ input {
   margin: 0.2rem;
   margin-bottom: 0.5rem;
 }
+
 /* .all-documents>.document {
   grid-row: span 1;
 }
