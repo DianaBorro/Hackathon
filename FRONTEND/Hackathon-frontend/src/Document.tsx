@@ -112,11 +112,11 @@ const Document = ({ document }: Props) => {
           cols={document.cols}
           rows={document.rows}
           onChange={(e) => {
-            // setUpdatedDocument({
-            //   ...updatedDocument,
-            //   content: e.target.value,
-            //   cols: e.target.cols,
-            // });
+            setUpdatedDocument({
+              ...updatedDocument,
+              content: e.target.value,
+              // cols: e.target.cols,
+            });
             // height = e.target.scrollHeight;
             console.log('colsss', e.target.cols);
           }}

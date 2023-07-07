@@ -172,41 +172,41 @@ const Documents = () => {
   return (
     <>
       <p>amount of documents: {documents.length}</p>
-      <div id="CreationOfDocument">
-        <h4>Create new note</h4>
-        <input
-          className="title"
-          type="text"
-          placeholder="Insert New Title"
-          value={newDocumentTitle}
-          onChange={(e) => {
-            setNewDocumentTitle(e.target.value);
-          }}
-        />
-        <textarea
-          name=""
-          id=""
-          cols={30}
-          rows={10}
-          value={newDocumentContent}
-          onChange={(e) => {
-            setNewDocumentContent(e.target.value);
-            setNewDocumentCols(e.target.cols);
-            setNewDocumentRows(e.target.rows);
-          }}
-        ></textarea>
-        <input
-          className="tag"
-          type="text"
-          placeholder="Insert tag"
-          defaultValue="Untitled"
-          value={newDocumentTag}
-          onChange={(e) => {
-            setNewDocumentTag(e.target.value);
-          }}
-        />
-        <button onClick={addingDocuments}>Save Note</button>
-        {/* {documents.map((document, index) => (
+
+      <h4>Create new note</h4>
+      <input
+        className="title"
+        type="text"
+        placeholder="Insert New Title"
+        value={newDocumentTitle}
+        onChange={(e) => {
+          setNewDocumentTitle(e.target.value);
+        }}
+      />
+      <textarea
+        name=""
+        id=""
+        cols={30}
+        rows={10}
+        value={newDocumentContent}
+        onChange={(e) => {
+          setNewDocumentContent(e.target.value);
+          setNewDocumentCols(e.target.cols);
+          setNewDocumentRows(e.target.rows);
+        }}
+      ></textarea>
+      <input
+        className="tag"
+        type="text"
+        placeholder="Insert tag"
+        defaultValue="Untitled"
+        value={newDocumentTag}
+        onChange={(e) => {
+          setNewDocumentTag(e.target.value);
+        }}
+      />
+      <button onClick={addingDocuments}>Save Note</button>
+      {/* {documents.map((document, index) => (
           <Document
             key={index}
             documents={documents}
@@ -214,14 +214,13 @@ const Documents = () => {
             documentId={document.id} //
           />
         ))} */}
-        <div className="all-documents">
-          {documents.map((e, index) => (
-            <Document
-              key={index}
-              document={e} //
-            />
-          ))}
-        </div>
+      <div className="all-documents">
+        {documents.map((e, index) => (
+          <Document
+            key={index}
+            document={e} //
+          />
+        ))}
       </div>
     </>
   );
