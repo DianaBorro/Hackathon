@@ -3,5 +3,6 @@ export type DocumentType = {
   content: string;
   tag: string;
   id?: string;
-  height?: number;
+  cols: number;
+  rows: number;
 };

@@ -59,12 +59,14 @@ const Document = ({ document }: Props) => {
   const handleUpdate = () => {
     console.log('updatedDocument: ', updatedDocument);
     console.log('document id', document._id);
-    console.log('height b4send', updatedDocument.height);
+    console.log('height b4send', updatedDocument.cols);
+    console.log('cols', document.height);
+
     const updatedContent = {
       title: updatedDocument.title,
       content: updatedDocument.content,
       tag: updatedDocument.tag,
-      size: updatedDocument.height, // Add the size property here
+      cols: updatedDocument.cols, // Add the size property here
     };
 
     handleUpdateDocument(document._id, updatedContent)
@@ -106,17 +108,17 @@ const Document = ({ document }: Props) => {
         />
         <textarea
           className="content"
-          defaultValue={document.content}
-          cols={document.height}
-          rows={document.height}
+          defaultValue={document.content} //have just value instead?
+          cols={document.cols}
+          rows={document.rows}
           onChange={(e) => {
-            setUpdatedDocument({
-              ...updatedDocument,
-              content: e.target.value,
-              height: e.target.scrollHeight,
-            });
+            // setUpdatedDocument({
+            //   ...updatedDocument,
+            //   content: e.target.value,
+            //   cols: e.target.cols,
+            // });
             // height = e.target.scrollHeight;
-            console.log('heightt', e.target.scrollHeight);
+            console.log('colsss', e.target.cols);
           }}
         ></textarea>
         <input
@@ -130,8 +132,10 @@ const Document = ({ document }: Props) => {
             });
           }}
         />
-        <button onClick={handleDelete}>delete</button>
-        <button onClick={handleUpdate}>save changes</button>
+        <div className="document-buttons">
+          <button onClick={handleDelete}>delete</button>
+          <button onClick={handleUpdate}>save changes</button>
+        </div>
       </div>
     </>
   );

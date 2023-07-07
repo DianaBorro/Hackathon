@@ -96,8 +96,9 @@ const thingie: DocumentType = {
   title: 'Frontend first trial document',
   content: '',
   tag: 'salt',
+  cols: 29,
+  rows: 10,
 };
-
 
 const happyLog = () => {
   console.log(hi);
@@ -108,6 +109,8 @@ const Documents = () => {
   const [newDocumentContent, setNewDocumentContent] = useState('');
   const [newDocumentTitle, setNewDocumentTitle] = useState('');
   const [newDocumentTag, setNewDocumentTag] = useState('');
+  const [newDocumentCols, setNewDocumentCols] = useState(0);
+  const [newDocumentRows, setNewDocumentRows] = useState(0);
 
   const gettingAllDocuments = async () => {
     // const existingDocuments = await handleCreateDocument();
@@ -122,7 +125,8 @@ const Documents = () => {
       title: newDocumentTitle,
       content: newDocumentContent,
       tag: newDocumentTag,
-      height: 50,
+      cols: newDocumentCols,
+      rows: newDocumentRows,
     };
 
     handleCreateDocument(newDocument)
@@ -185,7 +189,11 @@ const Documents = () => {
           cols={30}
           rows={10}
           value={newDocumentContent}
-          onChange={(e) => setNewDocumentContent(e.target.value)}
+          onChange={(e) => {
+            setNewDocumentContent(e.target.value);
+            setNewDocumentCols(e.target.cols);
+            setNewDocumentRows(e.target.rows);
+          }}
         ></textarea>
         <input
           className="tag"

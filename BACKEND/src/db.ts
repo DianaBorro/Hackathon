@@ -4,14 +4,16 @@ export type Document = {
   title: string;
   content: string;
   tag?: string;
-  height?: number;
+  cols?: number;
+  rows?: number;
 };
 
 const documentSchema = new mongoose.Schema<Document>({
   title: { type: String },
   content: { type: String, required: true },
   tag: { type: String },
-  height: { type: Number },
+  cols: { type: Number },
+  rows: { type: Number },
 });
 
 const uri =
@@ -56,12 +58,12 @@ export const documentModel = mongoose.model<Document>(
   documentSchema
 );
 
-documentModel
-  .create(thingie)
+// documentModel
+//   .create(thingie)
 
-  .then((createdDocument) => {
-    console.log('New document created:', createdDocument);
-  })
-  .catch((error) => {
-    console.error('Error creating document:', error);
-  });
+//   .then((createdDocument) => {
+//     console.log('New document created:', createdDocument);
+//   })
+//   .catch((error) => {
+//     console.error('Error creating document:', error);
+//   });
