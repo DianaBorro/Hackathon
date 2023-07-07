@@ -3,7 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --color: #e4e2c7;
+    --backgroundColor: #e4e2c7;
 }
+
 
 .creation-of-document {
   display: flex;
@@ -17,11 +20,11 @@
 }
   
 .document {
-  background-color: rgb(246, 243, 209);
   margin: 1rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  border: 2px solid #333;
 }
 
 .document-buttons {
@@ -35,8 +38,16 @@ textarea {
 input {
   border-radius: 0.2rem;
   border-width: 0;
+  background-color: var(--color);
 }
 
+.title {
+  font-size: large;
+  display: flex;
+  text-align: center;
+  margin: 0.2rem;
+  margin-bottom: 0.5rem;
+}
 /* .all-documents>.document {
   grid-row: span 1;
 }
