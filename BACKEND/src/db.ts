@@ -11,6 +11,7 @@ const documentSchema = new mongoose.Schema<Document>({
   title: { type: String },
   content: { type: String, required: true },
   tag: { type: String },
+  height: { type: Number },
 });
 
 const uri =

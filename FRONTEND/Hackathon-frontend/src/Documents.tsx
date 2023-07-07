@@ -106,6 +106,8 @@ const happyLog = () => {
 const Documents = () => {
   const [documents, setDocuments] = useState<DocumentType[]>([]);
   const [newDocumentContent, setNewDocumentContent] = useState('');
+  const [newDocumentTitle, setNewDocumentTitle] = useState('');
+  const [newDocumentTag, setNewDocumentTag] = useState('');
 
   const gettingAllDocuments = async () => {
     // const existingDocuments = await handleCreateDocument();
@@ -117,9 +119,9 @@ const Documents = () => {
 
   const addingDocuments = async () => {
     const newDocument = {
-      title: 'Untitled',
+      title: newDocumentTitle,
       content: newDocumentContent,
-      tag: 'sample',
+      tag: newDocumentTag,
       height: 50,
     };
 
@@ -129,6 +131,8 @@ const Documents = () => {
         setDocuments(updatedDocuments);
         // console.log('New document added', savedDocument);
         setNewDocumentContent('');
+        setNewDocumentTitle('');
+        setNewDocumentTag('');
       })
       .catch((error) => {
         console.error('Error creating document:', error);
@@ -166,6 +170,15 @@ const Documents = () => {
       <p>amount of documents: {documents.length}</p>
       <div id="CreationOfDocument">
         <h4>Create new note</h4>
+        <input
+          className="title"
+          type="text"
+          placeholder="Insert New Title"
+          value={newDocumentTitle}
+          onChange={(e) => {
+            setNewDocumentTitle(e.target.value);
+          }}
+        />
         <textarea
           name=""
           id=""
@@ -174,6 +187,16 @@ const Documents = () => {
           value={newDocumentContent}
           onChange={(e) => setNewDocumentContent(e.target.value)}
         ></textarea>
+        <input
+          className="tag"
+          type="text"
+          placeholder="Insert tag"
+          defaultValue="Untitled"
+          value={newDocumentTag}
+          onChange={(e) => {
+            setNewDocumentTag(e.target.value);
+          }}
+        />
         <button onClick={addingDocuments}>Save Note</button>
         {/* {documents.map((document, index) => (
           <Document

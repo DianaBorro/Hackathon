@@ -63,10 +63,11 @@ const Document = ({ document }: Props) => {
     const updatedContent = {
       title: updatedDocument.title,
       content: updatedDocument.content,
-      size: height, // Add the size property here
+      tag: updatedDocument.tag,
+      size: updatedDocument.height, // Add the size property here
     };
 
-    handleUpdateDocument(document._id, updatedDocument)
+    handleUpdateDocument(document._id, updatedContent)
       .then((updatedDoc) => {
         console.log('Document updated:', updatedDoc);
         // Optionally, you can perform any additional actions after successful update
@@ -106,6 +107,8 @@ const Document = ({ document }: Props) => {
         <textarea
           className="content"
           defaultValue={document.content}
+          cols={document.height}
+          rows={document.height}
           onChange={(e) => {
             setUpdatedDocument({
               ...updatedDocument,
@@ -113,9 +116,20 @@ const Document = ({ document }: Props) => {
               height: e.target.scrollHeight,
             });
             // height = e.target.scrollHeight;
-            console.log('heightt', height);
+            console.log('heightt', e.target.scrollHeight);
           }}
         ></textarea>
+        <input
+          className="tag"
+          type="text"
+          value={updatedDocument.tag}
+          onChange={(e) => {
+            setUpdatedDocument({
+              ...updatedDocument,
+              tag: e.target.value,
+            });
+          }}
+        />
         <button onClick={handleDelete}>delete</button>
         <button onClick={handleUpdate}>save changes</button>
       </div>
