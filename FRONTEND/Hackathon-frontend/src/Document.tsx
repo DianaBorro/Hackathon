@@ -1,33 +1,4 @@
-// import { useState } from 'react';
-// import { DocumentType } from './Context';
-// import { deleteDocument } from './api/api';
-
-// type Props = {
-//   documents?: any;
-//   documentContent?: any;
-// };
-
-// const Document = ({ documents, documentContent }: Props) => {
-//   const handleDelete = () => {};
-//   // const defaultValue = documents || '';
-
-//   return (
-//     <>
-//       {/* <blockquote contentEditable="true">
-//         <p>Edit this content to add your own quote</p>
-//       </blockquote> */}
-//       <div className="document">
-//         <textarea defaultValue={documentContent}></textarea>
-//         <button onClick={() => deleteDocument(documents._id)}>delete</button>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Document;
-
 import { useEffect, useState } from 'react';
-import { DocumentType } from './Context';
 import { deleteDocument, handleUpdateDocument } from './api/api';
 
 type Props = {
@@ -39,22 +10,7 @@ type Props = {
 };
 
 const Document = ({ document }: Props) => {
-  // documents.map((e: any) =>
-  //   console.log('from d these are all the docs', e._id)
-  // );
-  // documents.map((e: any) => (toDelete = e._id));
-
-  // console.log('documentId', documentId);
-
   const [updatedDocument, setUpdatedDocument] = useState({ ...document });
-
-  // const handleUpdate = () => {
-  //   console.log('updatedDocument: ', updatedDocument);
-  //   console.log('document id', document._id);
-
-  //   handleUpdateDocument(document._id, updatedDocument);
-  // };
-  let height: any;
 
   const handleUpdate = () => {
     console.log('updatedDocument: ', updatedDocument);
@@ -66,17 +22,15 @@ const Document = ({ document }: Props) => {
       title: updatedDocument.title,
       content: updatedDocument.content,
       tag: updatedDocument.tag,
-      cols: updatedDocument.cols, // Add the size property here
+      cols: updatedDocument.cols,
     };
 
     handleUpdateDocument(document._id, updatedContent)
       .then((updatedDoc) => {
         console.log('Document updated:', updatedDoc);
-        // Optionally, you can perform any additional actions after successful update
       })
       .catch((error) => {
         console.error('Error updating document:', error);
-        // Handle error
       });
   };
 
@@ -84,11 +38,9 @@ const Document = ({ document }: Props) => {
     deleteDocument(document._id)
       .then(() => {
         console.log('Document deleted successfully');
-        // Optionally, you can perform any additional actions after successful deletion
       })
       .catch((error) => {
         console.error('Error deleting document:', error);
-        // Handle error
       });
   };
 
@@ -111,16 +63,14 @@ const Document = ({ document }: Props) => {
         />
         <textarea
           className="content"
-          defaultValue={document.content} //have just value instead?
+          defaultValue={document.content}
           cols={10}
           rows={5}
           onChange={(e) => {
             setUpdatedDocument({
               ...updatedDocument,
               content: e.target.value,
-              // cols: e.target.cols,
             });
-            // height = e.target.scrollHeight;
             console.log('colsss', e.target.cols);
           }}
         ></textarea>

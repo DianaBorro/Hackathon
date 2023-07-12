@@ -1,108 +1,8 @@
-// import Document from './Document';
-// import { hi } from './Sidebar';
-// import { DocumentType } from './Context';
-// import { useEffect, useState } from 'react';
-
-// import {
-//   existingDocuments,
-//   fetchAllDocuments,
-//   handleCreateDocument,
-// } from './api/api';
-
-// const thingie: DocumentType = {
-//   title: 'Frontend first trial document',
-//   content: '',
-//   tag: 'salt',
-// };
-
-// const happyLog = () => {
-//   console.log(hi);
-// };
-
-// const Documents = () => {
-//   const [documents, setDocuments] = useState<DocumentType[]>([]);
-//   const [newDocumentContent, setNewDocumentContent] = useState('');
-
-//   const gettingAllDocuments = async () => {
-//     // const existingDocuments = await handleCreateDocument();
-//     // setNewDocument((prev) => [...prev, existingDocuments]);
-//     // await fetchAllDocuments();
-//     // console.log('this is fetchAllDocuments', await fetchAllDocuments());
-//     // return 'hi';
-//   };
-
-//   const addingDocuments = (newDocument: DocumentType) => {
-//     const updatedDocuments = [...documents, newDocument];
-//     setDocuments(updatedDocuments);
-//     console.log('new document typ added', documents);
-//     return 'hi';
-//   };
-
-//   useEffect(() => {
-//     console.log('documents:', documents);
-//     gettingAllDocuments();
-
-//     fetchAllDocuments()
-//       .then((documents) => {
-//         console.log('🍋🍋🍋', documents);
-//         setDocuments(documents);
-//         // Do something with the fetched documents
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching documents:', error);
-//       });
-
-//     handleCreateDocument();
-//   }, []);
-
-//   documents.map((e) => console.log('this are all the docs', e));
-//   console.log('LENGTH', documents.length);
-
-//   return (
-//     <>
-//       <textarea name="" id="" cols={30} rows={10}></textarea>
-//       {() => {
-//         // gettingAllDocuments();
-//         console.log('hi');
-//       }}
-//       <button
-//         onClick={() => {
-//           happyLog();
-//           addingDocuments(thingie);
-//           console.log('here are the existing documents', existingDocuments);
-//           const objectSize = Object.values(existingDocuments);
-//           console.log('object size', objectSize);
-//         }}
-//       >
-//         hi
-//       </button>
-//       {documents.map((document, index) => (
-//         <Document key={index} documents={document?.content} />
-//       ))}
-//     </>
-//   );
-// };
-
-// export default Documents;
-
 import Document from './Document';
-import { hi } from './Sidebar';
 import { DocumentType } from './Context';
 import { useEffect, useState } from 'react';
 
 import { fetchAllDocuments, handleCreateDocument } from './api/api';
-
-const thingie: DocumentType = {
-  title: 'Frontend first trial document',
-  content: '',
-  tag: 'salt',
-  cols: 29,
-  rows: 10,
-};
-
-const happyLog = () => {
-  console.log(hi);
-};
 
 const Documents = () => {
   const [documents, setDocuments] = useState<DocumentType[]>([]);
@@ -112,13 +12,7 @@ const Documents = () => {
   const [newDocumentCols, setNewDocumentCols] = useState(0);
   const [newDocumentRows, setNewDocumentRows] = useState(0);
 
-  const gettingAllDocuments = async () => {
-    // const existingDocuments = await handleCreateDocument();
-    // setNewDocument((prev) => [...prev, existingDocuments]);
-    // await fetchAllDocuments();
-    // console.log('this is fetchAllDocuments', await fetchAllDocuments());
-    // return 'hi';
-  };
+  const gettingAllDocuments = async () => {};
 
   const addingDocuments = async () => {
     const newDocument = {
@@ -133,7 +27,6 @@ const Documents = () => {
       .then((savedDocument) => {
         const updatedDocuments = [...documents, savedDocument];
         setDocuments(updatedDocuments);
-        // console.log('New document added', savedDocument);
         setNewDocumentContent('');
         setNewDocumentTitle('');
         setNewDocumentTag('');
@@ -141,39 +34,27 @@ const Documents = () => {
       .catch((error) => {
         console.error('Error creating document:', error);
       });
-    // const documentWithId = await handleCreateDocument(newDocument);
-    // return documentWithId;
   };
 
   useEffect(() => {
     console.log('documents:', documents);
     gettingAllDocuments();
-    addingDocuments(); //
+    addingDocuments();
 
     fetchAllDocuments()
       .then((documents) => {
-        // console.log('🍋🍋🍋', documents);
         setDocuments(documents);
-        // Do something with the fetched documents
       })
       .catch((error) => {
         console.error('Error fetching documents:', error);
       });
-
-    // handleCreateDocument();
   }, []);
-
-  // documents.map((e) => console.log('these are all the docs', e));
-  // documents.map((e) => e.id);
-  // console.log('LENGTH', documents.length);
-
-  // documents.map((e: any) => console.log(e));
 
   return (
     <>
-      <p>Amount of documents: {documents.length}</p>
+      <p className="amount">Amount of documents: {documents.length}</p>
       <div className="creation-of-document" id="CreationOfDocument">
-        <h4>Create new note</h4>
+        <h4 className="create">Create new note</h4>
         <input
           className="title"
           type="text"
@@ -185,6 +66,7 @@ const Documents = () => {
         />
         <textarea
           name=""
+          className=""
           id=""
           cols={20}
           rows={7}
@@ -206,20 +88,9 @@ const Documents = () => {
           }}
         />
         <button onClick={addingDocuments}>Save Note</button>
-        {/* {documents.map((document, index) => (
-          <Document
-            key={index}
-            documents={documents}
-            documentContent={document}
-            documentId={document.id} //
-          />
-        ))} */}
         <div className="all-documents">
           {documents.map((e, index) => (
-            <Document
-              key={index}
-              document={e} //
-            />
+            <Document key={index} document={e} />
           ))}
         </div>
       </div>
